@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <title>게시글 작성</title>
+  <link rel="stylesheet" href="/css/main.css">
+  </style>
+</head>
+<body>
+  <div class='wrap'>
+    <div class="post-wrap">
+      <h1><a href="">새로운 게시글 작성하기</a></h1>
+      <form action="/posts" method="post">
+        <div>
+          <input class='title-input' type='text' name='title' placeholder="제목" />
+        </div>
+        <textarea class="content-input" name="content" id="" cols="30" rows="10"></textarea>
+        <div style="text-align: right;">
+          <button class="btn btn-success p-2" type="submit">작성완료</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

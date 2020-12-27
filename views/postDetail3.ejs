@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class='wrap'>
+    <div class="post-wrap">
+      <h1><%= post.title %></h1>
+      <div class='content'><%= post.content %></div>
+
+      <% // if (user && user._id === post.writer) { %>
+        <form action="/posts/<%=post._id %>?_method=PUT" method="post">
+            <button type="submit">수정</button>
+        </form>
+        <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+          <button type='submit'>삭제</button>
+        </form>
+      <% // }
+        post.createAt.setHours(post.createAt.getHours() + 9)
+        post.updateAt.setHours(post.updateAt.getHours() + 9)
+      %>
+      <span>| 작성자 : <%= post.writer %></span>
+      <span>| 조회수 : <%= post.hit %></span>
+      <span>| 게시일 : <%= post.createAt.toISOString() %></span>
+      <span>| 수정일 : <%= post.updateAt.toISOString() %></span>
+
+      <% if (user) { %>
+        <form style="margin: 0 auto;" action="/posts/<%= post._id %>/comments" method="post">
+          <textarea style="width: 70%; height: 50px; resize: none;" name="content"></textarea>
+          <button>댓글작성</button>
+        </form>
+      <% } %>
+      <ul class='comment-list'>
+      <% post.comments.forEach((comment) => { %>
+        <li>
+          <p>작성자: <%=comment.writer %></p>
+          <p><%=comment.content %></p>
+          <p><%=comment.createAt %></p>
+          <% if (comment.writer === req.session.user._id) { %>
+          <form action="/posts/<%=post._id %>/comments/<%=comment._id %>?_method=DELETE" method="post">
+            <button type='submit'>삭제</button>
+          </form>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+    </div>
+  </div>
+</body>
+</html>

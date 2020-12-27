@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <title>게시판 리스트</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class='wrap'>
+    <div class="post-wrap">
+      <h1>게시판</h1>
+      <ul class="list-group">
+          <% posts.forEach((post, i) => { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center"><a href='/posts/<%= post._id %>'><%= (i + 1) %> | <%= post.title %><br><%= post.createAt %></a> <span class="badge badge-primary badge-pill"><%=post.hit %></span> </li>
+          <% }) %>
+      </ul>
+      <br/>
+      <a href='/posts/create'><button class="btn btn-primary">새로운 게시물</button></a>
+      <a href='/'><button class="btn btn-secondary">홈으로</button></a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글 수정하기</title>
+  <link rel="stylesheet" href="/css/main.css">
+  </style>
+</head>
+<body>
+  <div class='wrap'>
+    <div class="post-wrap">
+      <h1>게시글 수정하기</h1>
+      <form action="/posts/<%=searchPost._id %>/update?_method=PUT" method="post">
+        <div>
+          <input class='title-input' type='text' name='title' placeholder="제목" value="<%=searchPost.title %>" />
+        </div>
+        <textarea class="content-input" name="content" id="" cols="30" rows="10"><%=searchPost.content %></textarea>
+        <div>
+          <button class="post-submit-button" type="submit">수정하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

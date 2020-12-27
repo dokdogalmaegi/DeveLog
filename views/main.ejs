@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class='wrap'>
+    <div class="login-form center">
+      <form action="login" method="post">
+        <% if (!message) { %>
+          <h1 class='login-form-title'>DeveLog</h1>
+        <% }else { %>
+          <h1 class="login-form-title" style="font-size: 20px;"><%=message %></h1>
+        <% } %>
+        <% if (!user) { %> 
+        <div>
+          <input type="text" name="id" class='login-form-input' placeholder="아이디">
+        </div>
+        <div>
+          <input type="password" name="pw" class='login-form-input' placeholder="비밀번호">
+        </div>
+        <div style="margin-top: 10px;">
+          <input type="checkbox" name="remember_user" id="rembmer-user"> <label for="rembmer-user" style="user-select: none;">로그인 유지하기</label>
+        </div>
+        <button class='login-form-submit'>로그인</button>
+        <a href="/registry" style="float: right;">회원가입</a>
+        <% }else { %>
+        <h2 class="dy_h2"><%=user.name %>님 반갑습니다.</h2>
+        <div class="btn-box">
+          <a href="/posts" class="btn btn-primary">게시판</a>
+          <a href="/logout" class="btn btn-danger">로그아웃</a>
+        </div>
+        <% } %> 
+      </form>
+    </div>
+  </div>
+</body>
+</html>

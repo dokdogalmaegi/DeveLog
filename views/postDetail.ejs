@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%=post.title %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
+  <style>
+    ul, li {
+      list-style: none;
+    }
+    body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .progress {
+      position: fixed;
+      width: 100%;
+      height: 5px;
+      top: 0;
+      left: 0;
+      background-color: lightgray;
+      z-index: 10;
+    }
+
+    .bar {
+      position: absolute;
+      width: 0%;
+      height: 5px;
+      top: 0;
+      left: 0;
+      background-color: rgb(73, 72, 72);
+      z-index: 11;
+    }
+
+    /* 타이틀 헤더 영역 */
+    section.titleWrap {
+      position: fixed;
+      height: 500px;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    h1 {
+      position: absolute;
+      color: #eee;
+      text-align: center;
+      padding-top: 200px;
+      width: 100%;
+      font-size: 50px;
+      z-index: 1;
+    }
+
+    .cover {
+      position: fixed;
+      width: 100%;
+      height: 500px;
+      background-color: rgba(0, 0, 0, 1);
+    }
+
+    .coverImg {
+      position: fixed;
+      width: 100%;
+      height: 500px;
+      background-image: url('https://picsum.photos/1920/1080');
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    /* 본문 영역 */
+    section.textWrap {
+      position: relative;
+      width: 100%;
+      margin-top: 500px;
+      padding-top: 100px;
+      background-color: #fff;
+      z-index: 1;
+    }
+
+    .innerWrap {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    p {
+      color: #111;
+      font-size: 15px;
+      line-height: 28px;
+      margin-bottom: 80px;
+    }
+
+    .hyper_box {
+      position: fixed;
+      bottom: 0;
+      right: 1%;
+    }
+
+    .home_icon img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .modify_btn {
+      background: url('https://static.thenounproject.com/png/3082134-200.png');
+    }
+
+    .delete_btn {
+      background: url('https://cdn.onlinewebfonts.com/svg/img_275374.png');
+    }
+
+    .img_btn {
+      border: none;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    .comment_box {
+      width: 450px;
+      height: 200px;
+      padding: 15px;
+      border: 1px solid #bce8f1;
+    }
+
+    textarea {
+      box-sizing: border-box;
+      resize: none;
+      padding: 20px;
+      height: 150px;
+      width: 100%;
+      border: 1px solid #F2F2F2;
+    }
+
+    .btn {
+      margin-top: 10px;
+      color: #fff;
+      background-color: #286090;
+      border-color: #204d74;
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    .comment-list {
+        white-space: normal;
+    }
+
+    @media screen and (max-width: 1280px) {
+      h1 {
+        font-size: 24px;
+      }
+      .home_icon img {
+        width: 35px;
+        height: 35px;
+      }
+      .hyper_box button {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    @media screen and (max-width: 280px) {
+      .comment_box {
+        width: 200px;
+        height: 200px;
+        padding: 15px;
+        border: 1px solid #bce8f1;
+      }
+
+      textarea {
+        padding: 10px;
+        height: 100px;
+        width: 100%;
+        border: 1px solid #F2F2F2;
+      }
+    }
+
+    @media only screen and (max-width: 415px) {
+      .comment_box {
+        width: 300px;
+        height: 200px;
+        padding: 20px;
+        border: 1px solid #bce8f1;
+      }
+
+      textarea {
+        padding: 10px;
+        height: 150px;
+        width: 100%;
+        border: 1px solid #F2F2F2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="progress">
+    <span class="bar"></span>
+  </div>
+  <section class="container">
+    <section class="titleWrap">
+      <div class="coverImg"></div>
+      <div class="cover"></div>
+      <h1><%= post.title %></h1>
+    </section>
+
+    <section class="textWrap">
+      <div class="hyper_box">
+        <a href="/posts" class="home_icon"><img src="https://i.pinimg.com/originals/e2/5c/43/e25c43c6a65bdca84c72f0c58524fcd6.png" alt="icon"></a>
+        <% if(user._id === post.writer) { %>
+        <form action="/posts/<%=post._id %>?_method=PUT" method="post">
+          <button type="submit" class="img_btn modify_btn"></button>
+        </form>
+        <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+          <button type='submit' class="img_btn delete_btn"></button>
+        </form>
+        <% } %>
+      </div>
+      <div class="innerWrap">        
+        <p>
+            <%= post.content %>
+        </p>
+      </div>
+    </section>
+    <% if (user) { %>
+      <div class="comment_box" style="margin: 0 auto 100px; position: relative; z-index: 1;">
+        <form action="/posts/<%= post._id %>/comments" method="post">
+          <textarea name="content"></textarea>
+          <button class="btn" style="float: right;">댓글작성</button>
+        </form>
+      </div>
+    <% } %>
+    <ul class='comment-list'>
+      <% post.comments.forEach((comment) => { %>
+        <li>
+          <% let writer = (comment.writer_name) ? comment.writer_name : comment.writer %>
+          <h6><%=writer %></h6>
+          <span><%=comment.content %></span>
+          
+          <div class="comment_footer" style="width: 750px; box-sizing: border-box;">
+            <span style="color: #6c757d!important;" class="day_span"><%=comment.createAt %></span>
+            <% if(comment.writer === user._id) { %>
+            <form action="/posts/<%=post._id %>/comments/<%=comment._id %>?_method=DELETE" method="post">
+              <button type='submit' class="btn" style="background-color: #bb2d3b; border-color: #b02a37; padding: 0.25rem 0.5rem; font-size: 0.76563rem; border-radius:5px">삭제</button>
+            </form>
+            <% } %>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+  <script>
+    let scrollTop = 0;
+    let bar;
+    let per;
+
+    window.onload = function () {
+      bar = document.getElementsByClassName('bar')[0];
+      h1 = document.getElementsByTagName('h1')[0];
+      coverImg = document.getElementsByClassName('coverImg')[0];
+      cover = document.getElementsByClassName('cover')[0];
+      cover.style.opacity = .3;
+
+      per = (scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if(per > 25) {
+        cover.style.display = "none";
+      }else {
+        cover.style.display = "block";
+      }
+    }
+
+    window.addEventListener("scroll", function (e) {
+      if(window.screen.width <= 750) {
+        h1.style.fontSize = "24px";
+      }
+      scrollTop = document.documentElement.scrollTop;
+      per = (scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      bar.style.width = per + "%";
+      
+      // coverImg.style.backgroundPosition = `center ${-scrollTop/10}px`
+      scaleImg();
+      coverImg.style.transform = `scale(${(1 + scrollTop / 1000)}`;
+      h1.style.transform = `translate(0, ${-scrollTop / 2}px)`;
+      cover.style.opacity = .3 + scrollTop / 1000;
+    });
+
+    function scaleImg() {
+      let halfBottom = (document.documentElement.scrollHeight - window.innerHeight) / 2;
+      if(document.documentElement.scrollTop >= halfBottom) {
+        coverImg.style.display = "none";
+        cover.style.display = "none";
+      } else {
+        coverImg.style.display = "block";
+        cover.style.display = "block";
+      }
+    }
+
+  </script>
+</body>
+
+</html>
